@@ -1,0 +1,7 @@
+{
+  "name": "Book Your Meal",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
