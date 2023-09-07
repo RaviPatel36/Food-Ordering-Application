@@ -1,0 +1,143 @@
+<ion-content [fullscreen]="true">
+  <div class="img">
+    <div class="top">
+      <div class="back_div">
+        <ion-icon name="arrow-back-outline" color="light"></ion-icon>
+        <ion-icon name="star-outline" color="light" id="end"></ion-icon>
+      </div>
+    </div>
+    <div class="bottom">
+      <div class="first">
+        <img src="./../../assets/pexels-pixabay-35666.webp" alt="">
+      </div>
+      <div class="second">
+        <h4>Ravi Patel</h4>
+        <p>Professional Chef</p>
+        <p>3.0 <ion-icon name="star-outline"></ion-icon> (176 Reviews)</p>
+      </div>
+      <div class="third">
+        <h4>$20/Hr</h4>
+        <ion-button size="small" color="success">
+          OPEN
+        </ion-button>
+      </div>
+    </div>
+    <img src="./../../assets/food/food-bg.webp" id="myimg" alt="">
+  </div>
+
+  <div class="menu">
+    <div class="menuDiv">
+      <ion-icon name="chatbubble-outline"></ion-icon>
+      <p>Message</p>
+    </div>
+
+    <div class="menuDiv">
+      <ion-icon name="call"></ion-icon>
+      <p>Call</p>
+    </div>
+
+    <div class="menuDiv">
+      <ion-icon name="map-outline"></ion-icon>
+      <p>Direction</p>
+    </div>
+
+    <div class="menuDiv">
+      <ion-icon name="share-outline"></ion-icon>
+      <p>Share</p>
+    </div>
+  </div>
+
+  <div class="ch-menu">
+    <p>Chef Menu</p>
+
+    <div class="wrapper">
+      <div class="item" *ngFor="let item of user">
+        <img src="./../../assets/food/{{item.image}}" id="img" />
+        <p>{{item.title | slice: 0:6}}</p>
+      </div>
+    </div>
+
+    <ion-segment [value]="segId" (ionChange)="segmentChnaged($event)">
+      <ion-segment-button value="overview">
+        <ion-label>Overview</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="services">
+        <ion-label>Services</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="reviews">
+        <ion-label>Reviews</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+  </div>
+
+  <div class="content">
+    <div class="overview">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="5">
+            <p>About</p>
+          </ion-col>
+          <ion-col size="7">
+            <p class="ion-text-end">
+              <span>Average Price : </span>
+              <span>$20/</span> Hour
+            </p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <hr>
+
+      <p class="intro">
+        Hi I am Ravi Patel I've always had a passion for cooking. In the day im a Chef for a 5 star
+        resturant. Afterwards I use Open Kitchen to share my passions to the world. <span>Read More</span>
+      </p>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col size="5">
+            <p>Hours Available</p>
+          </ion-col>
+          <ion-col size="7">
+            <p class="ion-text-end">
+              <span> </span>
+              <span>View Details</span>
+            </p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <hr>
+
+
+      <div class="hrs">
+        <ion-label>
+          <ion-icon name="ellipse"></ion-icon>
+          <span> Monday - Friday :</span>4:00pm - 8:00pm
+        </ion-label>
+        <br>
+        <ion-label>
+          <ion-icon name="ellipse"></ion-icon>
+          <span> Saturday - Sunday :</span>7:00am - 8:00pm
+        </ion-label>
+      </div>
+
+      <br>
+
+      <div class="address">
+        <h3>Address</h3>
+
+        <ion-label>16704 Bishop Knoll, Houston, Texas 77084, USA</ion-label>
+
+        <h3>Photos <span> View All</span></h3>
+
+        <div class="lower-box">
+          <div class="wrapper">
+            <div class="item" *ngFor="let item of dish"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</ion-content>

@@ -1,0 +1,67 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="search-chef" color="light"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Orders</ion-title>
+
+    <ion-icon slot="end" name="notifications"></ion-icon>
+    <ion-badge id="notification-badge-msg" color="danger">2</ion-badge>
+    <ion-icon slot="end" name="cart"></ion-icon>
+    <ion-badge id="cart-badge-msg" color="danger">2</ion-badge>
+
+    <img slot="end" src="./../../assets/pexels-pixabay-35666.webp" alt="">
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="top">
+    <ion-segment value="upcoming" (ionChange)="segementChanged($event)">
+      <ion-segment-button value="upcoming">
+        <ion-label>Upcoming</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="past">
+        <ion-label>Past Orders</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div *ngFor="let order of orders">
+    <p id="date">{{order.date}}</p>
+    <div class="upperBox" *ngFor="let singleOrder of order.order">
+      <div class="image">
+        <img src="./../../assets/food/{{singleOrder.image}}" />
+      </div>
+
+      <div class="title">
+        <h3>{{singleOrder.title}}</h3>
+      </div>
+
+      <div class="menu">
+        <h3>
+          <ion-icon slot="start" name="ellipsis-vertical-outline" (click)="persentPopover($event)"></ion-icon>
+        </h3>
+      </div>
+
+      <div class="orderId">
+        <p>Order Id : #{{singleOrder.transId}}</p>
+      </div>
+
+      <div class="amount">
+        <h3>${{singleOrder.amount}}</h3>
+      </div>
+
+      <div class="status">
+        <p [ngStyle]="{'color':(singleOrder.status === 'CONFIRM') ? 'green':'red', 'background':(singleOrder.status === 'CONFIRM') ? '#e4f4eb' : '#f7d0c7'}">{{singleOrder.status}}</p>
+      </div>
+
+      <div class="time">
+        <p>Est. Time. : {{singleOrder.time}}</p>
+      </div>
+
+      <div class="edit">
+        <button class="btn" type="submit">Reorder</button>
+      </div>
+    </div>
+  </div>
+</ion-content>

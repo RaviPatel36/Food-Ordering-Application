@@ -1,0 +1,59 @@
+<ion-content [fullscreen]="true">
+  <div class="upper">
+    <div class="icon">
+      <ion-icon name="restaurant"></ion-icon>
+    </div>
+    <p id="login">BOOK YOUR MEAL</p>
+  </div>
+
+  <div class="middle">
+    <div class="box">
+      <form #loginForm="ngForm">
+        <p>Please login into your account</p>
+        <ion-item>
+          <ion-label position="floating">Email Address</ion-label>
+          <ion-input type="email" placeholder="Email" name="email" #email="ngModel" [(ngModel)]="login.email"
+            required></ion-input>
+          <ion-icon slot="end" class="ion-align-self-center" name="mail"></ion-icon>
+        </ion-item>
+        <div *ngIf="email.invalid && email.touched">
+          <ion-text color="danger text-center">
+            <h4 style="padding-left: 16px;font-size: small; margin-top: 10px;">Email Address is Required!</h4>
+          </ion-text>
+        </div>
+
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input [type]="type? 'password' : 'text'" placeholder="password" name="password" #password="ngModel"
+            [(ngModel)]="login.password" required></ion-input>
+          <ion-icon slot="end" class="ion-align-self-center" [name]="type? 'eye-off' :'eye'"
+            (click)="type = !type"></ion-icon>
+        </ion-item>
+        <div *ngIf="password.invalid && password.touched">
+          <ion-text color="danger text-center">
+            <h4 style="padding-left: 16px;font-size: small; margin-top: 10px;">Password is Required!</h4>
+          </ion-text>
+        </div>
+
+        <p id="forgetPassword" (click)="goToForgetPassword()">Forget Password?</p>
+
+        <div class="btn">
+          <ion-button (click)="Login()" [disabled]="loginForm.invalid">
+            Login
+          </ion-button>
+        </div>
+      </form>
+
+      <p id="media">Or Login using Social Media</p>
+      <div class="socialMedia">
+        <ion-icon name="logo-facebook" (click)="facebookLogin()"></ion-icon>
+        <ion-icon name="logo-twitter" (click)="twitterLogin()"></ion-icon>
+        <ion-icon name="logo-google" (click)="gmailLogin()"></ion-icon>
+      </div>
+    </div>
+  </div>
+
+  <div class="navigator">
+    <p>Don't have an Account ? Register Now</p>
+  </div>
+</ion-content>

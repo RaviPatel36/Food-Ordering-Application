@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="search-chef" color="light"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Payment History</ion-title>
+
+    <ion-icon slot="end" name="notifications"></ion-icon>
+    <ion-badge id="notification-badge-msg" color="danger">2</ion-badge>
+    <ion-icon slot="end" name="cart"></ion-icon>
+    <ion-badge id="cart-badge-msg" color="danger">2</ion-badge>
+
+    <img slot="end" src="./../../assets/pexels-pixabay-35666.webp" alt="">
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <div *ngFor="let payment of payments ">
+    <p id="date">{{payment?.date}}</p>
+
+    <div class="upperBox" *ngFor="let item of payment.transactions">
+      <div class="img">
+        <img src="./../../assets/food/{{item?.image}}" alt="">
+      </div>
+      <div class="title">{{item.title}}</div>
+      <div class="price">{{"$" + item.amount}}</div>
+      <div class="transId">Transaction ID : #{{item.transId}}</div>
+      <div class="time">{{item.time}}</div>
+      <div class="bank">{{item.bank}}</div>
+      <div class="status">
+        <p [ngStyle]="{'color':(item.status === 'SUCCESS') ? 'green': (item.status === 'FAILED') ? 'red' : 'orange'}">{{item.status}}</p>
+      </div>
+    </div>
+  </div>
+</ion-content>
