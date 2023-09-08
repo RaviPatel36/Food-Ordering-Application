@@ -2,8 +2,10 @@
   <div class="img">
     <div class="top">
       <div class="back_div">
-        <ion-icon name="arrow-back-outline" color="light"></ion-icon>
-        <ion-icon name="star-outline" color="light" id="end"></ion-icon>
+        <ion-buttons slot="start">
+          <ion-back-button defaultHref="home"></ion-back-button>
+          <ion-icon name="star-outline" color="light" id="end" slot="end"></ion-icon>
+        </ion-buttons>
       </div>
     </div>
     <div class="bottom">
@@ -25,7 +27,7 @@
     <img src="./../../assets/food/food-bg.webp" id="myimg" alt="">
   </div>
 
-  <div class="menu">
+  <div class="action-menu">
     <div class="menuDiv">
       <ion-icon name="chatbubble-outline"></ion-icon>
       <p>Message</p>
@@ -72,7 +74,7 @@
   </div>
 
   <div class="content">
-    <div class="overview">
+    <div class="overview" *ngIf="segId === 'overview'">
       <ion-grid>
         <ion-row>
           <ion-col size="5">
@@ -130,12 +132,106 @@
 
         <h3>Photos <span> View All</span></h3>
 
-        <div class="lower-box">
+        <div class="lowerBox">
           <div class="wrapper">
-            <div class="item" *ngFor="let item of dish"></div>
+            <div class="item" *ngFor="let item of dish">
+              <img id="img" src="./../../assets/food/{{item.image}}" alt="">
+            </div>
+          </div>
+        </div>
+        <ion-button (click)="goToEvent()" expand="block">
+          Book a Chef
+        </ion-button>
+      </div>
+    </div>
+
+    <div class="services" *ngIf="segId === 'services'">
+
+      <div class="lowerBox">
+        <div class="wrapper">
+          <div class="item" *ngFor="let item of dish">
+            <img id="img" src="./../../assets/food/{{item.image}}" alt="">
           </div>
         </div>
       </div>
+
+      <div class="innerService" *ngFor="let order of orders">
+        <p id="date">{{order.date}}</p>
+        <div class="upperBox1" *ngFor="let singleOrder of order.order">
+          <div class="image">
+            <img id="img" src="./../../assets/food/{{singleOrder.image}}" alt="">
+          </div>
+
+          <div class="title">
+            <h3>{{singleOrder.title}}</h3>
+          </div>
+
+          <div class="menu">
+            <h3>
+              <ion-icon name="ellipsis-vertical-outline" (click)="presentPopover($event)"></ion-icon>
+            </h3>
+          </div>
+
+          <div class="orderId">
+
+          </div>
+
+          <div class="amount">
+            <h3>${{singleOrder.amount}}</h3>
+          </div>
+
+          <div class="status">
+
+          </div>
+          <div class="time">
+            <p>Est. Time : {{singleOrder.time}}</p>
+          </div>
+
+          <div class="edit">
+            <button color="light" class="btn" type="submit" (click)="presentActionSheet()">
+              Add
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="segId == 'reviews'" class="reviews">
+      <div class="writeReview">
+        <p>Write Your Reiviews </p>
+        <ngx-stars [color]="'#ffa015'" [size]="2"></ngx-stars>
+      </div>
+
+      <div class="imgReview">
+        <div class="imgs">
+          <img src="./../../assets/001.JPG" />
+        </div>
+        <div class="inputbox">
+          <input type="text" placeholder="Leave Your Experience" />
+        </div>
+        <div class="empty"></div>
+        <div class="btn">
+          <ion-button color="danger">POST</ion-button>
+        </div>
+      </div>
+
+      <div class="comments">
+        <ion-label>All Reviews (28)</ion-label>
+
+        <div class="commentBlock">
+          <div class="cimg">
+            <img src="../../../assets/002.JPG" />
+          </div>
+          <div class="cName">
+            <p>Kevin Doyle</p>
+            <ngx-stars [color]="'#ffa015'" [size]="1"></ngx-stars>
+          </div>
+          <div class="cTime"> 2 days ago</div>
+          <div class="star"></div>
+          <div class="commentLine"></div>
+        </div>
+      </div>
+
     </div>
   </div>
 

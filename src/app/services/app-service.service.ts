@@ -16,4 +16,12 @@ export class AppServiceService {
   getAllMenuDishes():Observable<any> {
     return this.http.get('assets/Json/menuDishes.json');
   }
+
+  getAllDishes() :Observable<any> {
+    return this.http.get('assets/Json/dish.json');
+  }
+
+  getAllOrders() :Observable<any> {
+    return this.http.get('assets/Json/order.json');
+  }
 }
